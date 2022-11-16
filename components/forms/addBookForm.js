@@ -3,10 +3,10 @@ import renderToDOM from '../../utils/renderToDom';
 import selectAuthor from './selectAuthor';
 
 // USING THIS FORM FOR BOTH CREATE AND UPDATE
-const addBookForm = (obj = {}) => {
-  clearDom();
+const addBookForm = (obj = {}) => { // allows us to keep our code dry, reusable func, were dot notating
+  clearDom(); // you can call the function and it would default paramater thats an empty object
   const domString = `
-    <form id="${obj.firebaseKey ? `update-book--${obj.firebaseKey}` : 'submit-book'}" class="mb-4">
+    <form id="${obj.firebaseKey ? `update-book--${obj.firebaseKey}` : 'submit-book'}" class="mb-4"> 
       <div class="form-group">
         <label for="title">Book Title</label>
         <input type="text" class="form-control" id="title" aria-describedby="bookTitle" placeholder="Enter Book Title" value="${obj.title || ''}" required>
@@ -34,7 +34,7 @@ const addBookForm = (obj = {}) => {
     </form>`;
 
   renderToDOM('#form-container', domString);
-  selectAuthor(`${obj.author_id || ''}`);
+  selectAuthor(`${obj.author_id || ''}`); // fuction creating select dropdown menu
 };
 
 export default addBookForm;
