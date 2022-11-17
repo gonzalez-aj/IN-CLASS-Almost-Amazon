@@ -73,8 +73,8 @@ const formEvents = () => {
     // FIXME:ADD CLICK EVENT FOR EDITING AN AUTHOR
     if (e.target.id.includes('update-author')) {
       const [, firebaseKey] = e.target.id.split('--');
-      // console.warn('CLICKED UPDATE BOOK', e.target.id);
-      // console.warn(firebaseKey);
+      console.warn('CLICKED UPDATE Author', e.target.id);
+      console.warn(firebaseKey);
 
       const payload = {
         first_name: document.querySelector('#first-name').value,
