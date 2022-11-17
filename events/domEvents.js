@@ -4,6 +4,7 @@ import addAuthorForm from '../components/forms/addAuthorForm';
 import addBookForm from '../components/forms/addBookForm';
 import { showAuthors } from '../pages/authors';
 import { showBooks } from '../pages/books';
+import viewBook from '../pages/viewBook';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -11,7 +12,7 @@ const domEvents = () => {
     if (e.target.id.includes('delete-book')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
-        console.warn('CLICKED DELETE BOOK', e.target.id);
+        // console.warn('CLICKED DELETE BOOK', e.target.id);
         const [, firebaseKey] = e.target.id.split('--');
 
         deleteBook(firebaseKey).then(() => {
@@ -39,6 +40,17 @@ const domEvents = () => {
     if (e.target.id.includes('view-book-btn')) {
       console.warn('VIEW BOOK', e.target.id);
       console.warn(e.target.id.split('--'));
+      console.warn(viewBook);
+      // const [, firebaseKey] = e.target.id.split('--');
+
+      // getSingleBook(firebaseKey).then((Obj) => viewBook(Obj));
+      // errors: viewBook.js:23 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'first_name')
+      //       at viewBook (viewBook.js:23:45)
+      //       at eval (domEvents.js:56:154)
+      //   viewBook @ viewBook.js:23
+      //   eval @ domEvents.js:56
+      //   Promise.then (async)
+      //   eval @ domEvents.js:56
     }
 
     // CLICK EVENT FOR DELETING AN AUTHOR
@@ -67,6 +79,12 @@ const domEvents = () => {
 
       getSingleAuthor(firebaseKey).then((authorObj) => addAuthorForm(authorObj));
       // getSingleAuthor(firebaseKey).then(addAuthorForm); // using the callback method
+
+      // CLICK EVENT FOR VIEW AUTHOR DETAILS
+      if (e.target.id.includes('view-author-btn')) {
+        console.warn('VIEW AUTHOR', e.target.id);
+        // console.warn(e.target.id.split('--'));
+      }
     }
   });
 };
