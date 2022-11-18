@@ -16,14 +16,14 @@ const domEvents = () => {
         const [, firebaseKey] = e.target.id.split('--');
 
         deleteBook(firebaseKey).then(() => {
-          getBooks().then(showBooks); // we call itinside of delete book cause it needs to go in sequence
-        }); // we don't want erase conditioning
+          getBooks().then(showBooks); // we call it inside of delete book cause it needs to go in sequence ?
+        }); // we don't want to erase conditioning ?
       }
     }
 
     // TODO: CLICK EVENT FOR SHOWING FORM FOR ADDING A BOOK
     if (e.target.id.includes('add-book-btn')) {
-      console.warn('ADD BOOK');
+      // console.warn('ADD BOOK');
       addBookForm();
     }
 
@@ -34,30 +34,24 @@ const domEvents = () => {
       const [, firebaseKey] = e.target.id.split('--');
 
       getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj));
-      // getSingleBook(firebaseKey).then(addBookForm); // using the callback method
+      // getSingleBook(firebaseKey).then(addBookForm); // using the callback method ?
     }
     // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
       console.warn('VIEW BOOK', e.target.id);
       console.warn(e.target.id.split('--'));
       console.warn(viewBook);
-      // const [, firebaseKey] = e.target.id.split('--');
+      const [, firebaseKey] = e.target.id.split('--');
 
-      // getSingleBook(firebaseKey).then((Obj) => viewBook(Obj));
-      // errors: viewBook.js:23 Uncaught (in promise) TypeError: Cannot read properties of undefined (reading 'first_name')
-      //       at viewBook (viewBook.js:23:45)
-      //       at eval (domEvents.js:56:154)
-      //   viewBook @ viewBook.js:23
-      //   eval @ domEvents.js:56
-      //   Promise.then (async)
-      //   eval @ domEvents.js:56
+      getSingleBook(firebaseKey).then(viewBook);
+      // getBookDetails(firebaseKey).then(viewBook); <-- but getBookDetails Does Not Exist
     }
 
     // CLICK EVENT FOR DELETING AN AUTHOR
     if (e.target.id.includes('delete-author-btn')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
-        console.warn('DELETE AUTHOR', e.target.id);
+        // console.warn('DELETE AUTHOR', e.target.id);
         const [, firebaseKey] = e.target.id.split('--');
 
         deleteSingleAuthor(firebaseKey).then(() => {
