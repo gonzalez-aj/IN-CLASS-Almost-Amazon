@@ -1,9 +1,10 @@
-import { deleteSingleAuthor, getAuthors } from '../api/authorData';
+import { deleteSingleAuthor, getAuthors, getSingleAuthor } from '../api/authorData';
 import { deleteBook, getBooks, getSingleBook } from '../api/bookData';
 import addAuthorForm from '../components/forms/addAuthorForm';
 import addBookForm from '../components/forms/addBookForm';
 import { showAuthors } from '../pages/authors';
 import { showBooks } from '../pages/books';
+import viewBook from '../pages/viewBook';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -11,18 +12,18 @@ const domEvents = () => {
     if (e.target.id.includes('delete-book')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
-        console.warn('CLICKED DELETE BOOK', e.target.id);
+        // console.warn('CLICKED DELETE BOOK', e.target.id);
         const [, firebaseKey] = e.target.id.split('--');
 
         deleteBook(firebaseKey).then(() => {
-          getBooks().then(showBooks); // we call itinside of delete book cause it needs to go in sequence
-        }); // we don't want erase conditioning
+          getBooks().then(showBooks); // we call it inside of delete book cause it needs to go in sequence ?
+        }); // we don't want to erase conditioning ?
       }
     }
 
     // TODO: CLICK EVENT FOR SHOWING FORM FOR ADDING A BOOK
     if (e.target.id.includes('add-book-btn')) {
-      console.warn('ADD BOOK');
+      // console.warn('ADD BOOK');
       addBookForm();
     }
 
@@ -33,19 +34,24 @@ const domEvents = () => {
       const [, firebaseKey] = e.target.id.split('--');
 
       getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj));
-      // getSingleBook(firebaseKey).then(addBookForm); // using the callback method
+      // getSingleBook(firebaseKey).then(addBookForm); // using the callback method ?
     }
     // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
       console.warn('VIEW BOOK', e.target.id);
       console.warn(e.target.id.split('--'));
+      console.warn(viewBook);
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getSingleBook(firebaseKey).then(viewBook);
+      // getBookDetails(firebaseKey).then(viewBook); <-- but getBookDetails Does Not Exist
     }
 
     // CLICK EVENT FOR DELETING AN AUTHOR
     if (e.target.id.includes('delete-author-btn')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
-        console.warn('DELETE AUTHOR', e.target.id);
+        // console.warn('DELETE AUTHOR', e.target.id);
         const [, firebaseKey] = e.target.id.split('--');
 
         deleteSingleAuthor(firebaseKey).then(() => {
@@ -60,6 +66,20 @@ const domEvents = () => {
       addAuthorForm();
     }
     // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
+    if (e.target.id.includes('edit-author-btn')) {
+      console.warn('EDIT AUTHOR', e.target.id);
+      console.warn(e.target.id.split('--'));
+      const [, firebaseKey] = e.target.id.split('--');
+
+      getSingleAuthor(firebaseKey).then((authorObj) => addAuthorForm(authorObj));
+      // getSingleAuthor(firebaseKey).then(addAuthorForm); // using the callback method
+
+      // CLICK EVENT FOR VIEW AUTHOR DETAILS
+      if (e.target.id.includes('view-author-btn')) {
+        console.warn('VIEW AUTHOR', e.target.id);
+        // console.warn(e.target.id.split('--'));
+      }
+    }
   });
 };
 
