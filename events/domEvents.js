@@ -1,5 +1,8 @@
 import { deleteSingleAuthor, getAuthors, getSingleAuthor } from '../api/authorData';
-import { deleteBook, getBooks, getSingleBook } from '../api/bookData';
+import {
+  deleteBook, getBooks, getSingleBook
+} from '../api/bookData';
+import getBookDetails from '../api/mergedData';
 import addAuthorForm from '../components/forms/addAuthorForm';
 import addBookForm from '../components/forms/addBookForm';
 import { showAuthors } from '../pages/authors';
@@ -38,16 +41,17 @@ const domEvents = () => {
     }
     // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
-      console.warn('VIEW BOOK', e.target.id);
-      console.warn(e.target.id.split('--'));
-      console.warn(viewBook);
-      const [, firebaseKey] = e.target.id.split('--');
+      // console.warn('VIEW BOOK', e.target.id);
+      // console.warn(e.target.id.split('--'));
+      // console.warn(viewBook);
+      const [, firebaseKey] = e.target.id.split('--'); // destructuring
 
-      getSingleBook(firebaseKey).then(viewBook); // viewbook is the promise return that is passed in to get single author as obj
+      // getBookInfo(firebaseKey).then(viewBook);
+      // viewbook is the promise return that is passed in to get single author as obj
       // console.warn('viewbook author id', viewBook.author_id);
       // this is where to make the function suck less.
       // getSingleAuthor(obj.author_id).then((authorObject)
-      // getBookDetails(firebaseKey).then(viewBook); <-- but getBookDetails Does Not Exist
+      getBookDetails(firebaseKey).then(viewBook); // <-- but getBookDetails Does Not Exist
     }
 
     // CLICK EVENT FOR DELETING AN AUTHOR

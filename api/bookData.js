@@ -84,6 +84,19 @@ const booksOnSale = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// what is this get book info
+const getBookInfo = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(data))
+    .catch(reject);
+});
+
 // TODO: STRETCH...SEARCH BOOKS
 
 export {
@@ -92,5 +105,6 @@ export {
   booksOnSale,
   deleteBook,
   getSingleBook,
-  updateBook
+  updateBook,
+  getBookInfo
 };
