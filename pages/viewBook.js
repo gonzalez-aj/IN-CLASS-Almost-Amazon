@@ -1,9 +1,17 @@
 import clearDom from '../utils/clearDom';
 import renderToDOM from '../utils/renderToDom';
+import { getSingleAuthor } from '../api/authorData';
+
+// const [, firebaseKey] = e.target.id.split('--');
+// console.warn('>>blah>>', firebaseKey);
+// getSingleAuthor(firebaseKey).then((authorObj) => addAuthorForm(authorObj));
 
 const viewBook = (obj) => {
   clearDom();
-
+  console.warn('object', obj);
+  console.warn('object.title', obj.title);
+  console.warn('obj.author_id', obj.author_id);
+  getSingleAuthor(obj[0]).then((authorObject) => console.warn('author object', authorObject));
   const domString = `
   <div class="mt-5 d-flex flex-wrap">
    <div class="d-flex flex-column">
@@ -14,8 +22,8 @@ const viewBook = (obj) => {
      </div>
    </div>
    <div class="text-white ms-5 details">
-     <h5>${obj.title} by ${obj.authorObject.first_name} ${obj.authorObject.last_name} ${obj.authorObject.favorite ? '<span class="badge bg-danger"><i class="fa fa-heart" aria-hidden="true"></i></span>' : ''}</h5>
-     Author Email: <a href="mailto:${obj.authorObject.email}">${obj.authorObject.email}</a>
+   <h5>${obj.title} by ${obj.authorObject.first_name} ${obj.authorObject.last_name} ${obj.authorObject.favorite ? '<span class="badge bg-danger"><i class="fa fa-heart" aria-hidden="true"></i></span>' : ''}</h5>
+   Author Email: <a href="mailto:${obj.authorObject.email}">${obj.authorObject.email}</a>
      <p>${obj.description || ''}</p>
      <hr>
      <p>${obj.sale ? `<span class="badge bg-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> 

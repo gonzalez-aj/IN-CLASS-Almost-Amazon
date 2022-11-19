@@ -70,7 +70,7 @@ const domEvents = () => {
       console.warn('EDIT AUTHOR', e.target.id);
       console.warn(e.target.id.split('--'));
       const [, firebaseKey] = e.target.id.split('--');
-
+      console.warn('>>blah>>', firebaseKey);
       getSingleAuthor(firebaseKey).then((authorObj) => addAuthorForm(authorObj));
       // getSingleAuthor(firebaseKey).then(addAuthorForm); // using the callback method
 
