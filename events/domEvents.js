@@ -43,7 +43,10 @@ const domEvents = () => {
       console.warn(viewBook);
       const [, firebaseKey] = e.target.id.split('--');
 
-      getSingleBook(firebaseKey).then(viewBook);
+      getSingleBook(firebaseKey).then(viewBook); // viewbook is the promise return that is passed in to get single author as obj
+      // console.warn('viewbook author id', viewBook.author_id);
+      // this is where to make the function suck less.
+      // getSingleAuthor(obj.author_id).then((authorObject)
       // getBookDetails(firebaseKey).then(viewBook); <-- but getBookDetails Does Not Exist
     }
 
