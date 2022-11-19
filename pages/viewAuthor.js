@@ -6,8 +6,8 @@ const viewAuthor = (obj) => {
   let domString = `
   <div class="mt-5 d-flex flex-wrap">
   <div class="d-flex flex-column">
-    <h5> Author Info: ${obj.authorObject.first_name} ${obj.authorObject.last_name} ${obj.authorObject.favorite ? '<span class="badge bg-danger"><i class="fa fa-heart" aria-hidden="true"></i></span>' : ''}</h5>
-    Author Email: <a href="mailto:${obj.authorObject.email}">${obj.authorObject.email}</a>
+    <h5> Author Info: ${obj.first_name} ${obj.last_name} ${obj.favorite ? '<span class="badge bg-danger"><i class="fa fa-heart" aria-hidden="true"></i></span>' : ''}</h5>
+    Author Email: <a href="mailto:${obj.email}">${obj.email}</a>
   </div>
   </div>`;
 

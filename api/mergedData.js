@@ -33,12 +33,20 @@ const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
 // Because we do not want to wait for each API call to be made if it is not necessary. This would slow down the code.
 
 // TODO: Get data for viewAuthor
-const getAuthorBooks = async (firebaseKey) => {
-  const author = await getSingleAuthor(firebaseKey);
-  const authorBooks = await getBooksByAuthor(author.firebaseKey);
+const getAuthorBooks = (firebaseKey) => new Promise((resolve, reject) => {
+  getSingleAuthor(firebaseKey).then((authorObject) => {
+    getBooksByAuthor(firebaseKey)
+      .then((authorBooks) => resolve({ ...authorObject, authorBooks }));
+  }).catch(reject);
+});
 
-  return { ...author, authorBooks };
-};
+// asynch await
+// const getAuthorBooks = async (firebaseKey) => {
+//   const author = await getSingleAuthor(firebaseKey);
+//   const authorBooks = await getBooksByAuthor(author.firebaseKey);
+
+//   return { ...author, authorBooks };
+// };
 // const getAuthorDetails = (firebaseKey) => new Promise((resolve, reject) => {
 // });
 // get authors books get authors books it hsould be a an array of books, an array method .map we could still .notate on it object.authorsarray.map what you want the dom string to actually give to you
