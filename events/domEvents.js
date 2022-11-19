@@ -2,11 +2,12 @@ import { deleteSingleAuthor, getAuthors, getSingleAuthor } from '../api/authorDa
 import {
   deleteBook, getBooks, getSingleBook
 } from '../api/bookData';
-import getBookDetails from '../api/mergedData';
+import { getBookDetails, getAuthorBooks } from '../api/mergedData';
 import addAuthorForm from '../components/forms/addAuthorForm';
 import addBookForm from '../components/forms/addBookForm';
 import { showAuthors } from '../pages/authors';
 import { showBooks } from '../pages/books';
+import viewAuthor from '../pages/viewAuthor';
 import viewBook from '../pages/viewBook';
 
 const domEvents = () => {
@@ -39,7 +40,7 @@ const domEvents = () => {
       getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj));
       // getSingleBook(firebaseKey).then(addBookForm); // using the callback method ?
     }
-    // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
+    // TODO: CLICK EVENT FOR VIEW BOOK DETAILS green button
     if (e.target.id.includes('view-book-btn')) {
       // console.warn('VIEW BOOK', e.target.id);
       // console.warn(e.target.id.split('--'));
@@ -49,9 +50,8 @@ const domEvents = () => {
       // getBookInfo(firebaseKey).then(viewBook);
       // viewbook is the promise return that is passed in to get single author as obj
       // console.warn('viewbook author id', viewBook.author_id);
-      // this is where to make the function suck less.
       // getSingleAuthor(obj.author_id).then((authorObject)
-      getBookDetails(firebaseKey).then(viewBook); // <-- but getBookDetails Does Not Exist
+      getBookDetails(firebaseKey).then(viewBook);
     }
 
     // CLICK EVENT FOR DELETING AN AUTHOR
@@ -74,18 +74,20 @@ const domEvents = () => {
     }
     // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
     if (e.target.id.includes('edit-author-btn')) {
-      console.warn('EDIT AUTHOR', e.target.id);
-      console.warn(e.target.id.split('--'));
+      // console.warn('EDIT AUTHOR', e.target.id);
+      // console.warn(e.target.id.split('--'));
       const [, firebaseKey] = e.target.id.split('--');
-      console.warn('>>blah>>', firebaseKey);
+      // console.warn('>>blah>>', firebaseKey);
       getSingleAuthor(firebaseKey).then((authorObj) => addAuthorForm(authorObj));
       // getSingleAuthor(firebaseKey).then(addAuthorForm); // using the callback method
+    }
+    // CLICK EVENT FOR VIEW AUTHOR DETAILS green button
+    if (e.target.id.includes('view-author-btn')) {
+      console.warn('VIEW AUTHOR', e.target.id);
+      console.warn(e.target.id.split('--'));
+      const [, firebaseKey] = e.target.id.split('--'); // destructuring
 
-      // CLICK EVENT FOR VIEW AUTHOR DETAILS
-      if (e.target.id.includes('view-author-btn')) {
-        console.warn('VIEW AUTHOR', e.target.id);
-        // console.warn(e.target.id.split('--'));
-      }
+      getAuthorBooks(firebaseKey).then(viewAuthor);
     }
   });
 };

@@ -1,6 +1,8 @@
 import { getAuthors } from '../../api/authorData';
 import renderToDOM from '../../utils/renderToDom';
 
+// THIS IS JUST THE DROP DOWN MENU
+
 const selectAuthor = (authorId) => {
   let domString = `<label for="author">Select an Author</label>
     <select class="form-control" id="author_id" required>

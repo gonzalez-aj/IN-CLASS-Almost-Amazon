@@ -2,7 +2,7 @@ import client from '../utils/client';
 
 const endpoint = client.databaseURL;
 
-// GET ALL AUTHORS promise
+// GET ALL AUTHORS promise - we gotta add a conditional!
 const getAuthors = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/authors.json`, {
     method: 'GET',
@@ -48,10 +48,10 @@ const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-    },
+    }, // you technically do not need the options object for GET requests, but using it here for consistency
   })
     .then((response) => response.json())
-    .then((data) => resolve(data))
+    .then((data) => resolve(data)) // will resolve a single object
     .catch(reject);
 });
 
@@ -82,8 +82,18 @@ const updateAuthor = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// TODO: GET A SINGLE AUTHOR'S BOOKS
-const getAuthorBooks = () => {};
+// TODO: GET A SINGLE AUTHOR'S BOOKS - get(READ) author books
+const getAuthorBooks = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books.json?orderBy="author_id"&equalTo=${firebaseKey}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
 
 export {
   getAuthors,
