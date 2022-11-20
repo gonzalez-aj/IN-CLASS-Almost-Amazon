@@ -84,7 +84,7 @@ const updateAuthor = (payload) => new Promise((resolve, reject) => {
 
 // TODO: GET A SINGLE AUTHOR'S BOOKS - get(READ) author books
 const getAuthorBooks = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books.json?orderBy="author_id"&equalTo=${firebaseKey}`, {
+  fetch(`${endpoint}/books.json?orderBy="author_id"&equalTo="${firebaseKey}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -83,8 +83,8 @@ const domEvents = () => {
     }
     // CLICK EVENT FOR VIEW AUTHOR DETAILS green button
     if (e.target.id.includes('view-author-btn')) {
-      console.warn('VIEW AUTHOR', e.target.id);
-      console.warn(e.target.id.split('--'));
+      // console.warn('VIEW AUTHOR', e.target.id);
+      // console.warn(e.target.id.split('--'));
       const [, firebaseKey] = e.target.id.split('--'); // destructuring
 
       getAuthorBooks(firebaseKey).then(viewAuthor);

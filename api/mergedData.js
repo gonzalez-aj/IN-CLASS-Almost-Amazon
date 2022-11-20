@@ -32,7 +32,7 @@ const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
 // For all else, we can use Promise.all, Promise.allSettled, etc. Why?
 // Because we do not want to wait for each API call to be made if it is not necessary. This would slow down the code.
 
-// TODO: Get data for viewAuthor
+// TODO: Get data for viewAuthor green button
 const getAuthorBooks = (firebaseKey) => new Promise((resolve, reject) => {
   getSingleAuthor(firebaseKey).then((authorObject) => {
     getBooksByAuthor(firebaseKey)
