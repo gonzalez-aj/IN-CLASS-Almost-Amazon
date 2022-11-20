@@ -1,8 +1,8 @@
 // for merged promises
 
 // import client from '../utils/client';
-import { getSingleAuthor } from './authorData';
-import { getBooksByAuthor, getSingleBook } from './bookData';
+import { deleteSingleAuthor, getSingleAuthor } from './authorData';
+import { deleteBook, getBooksByAuthor, getSingleBook } from './bookData';
 // API CALLS FOR BOOKS
 
 // const endpoint = client.databaseURL;
@@ -21,6 +21,7 @@ const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
 // ...spread operator in JS: https://github.com/orgs/nss-evening-web-development/discussions/6
 
 // BONUS: use async / await for promises instead of above code
+
 // const getBookDetails = async(firebaseKey) => { // the async keyword let's JS know this is asynchronous function (promise)
 //   const bookObject = await getSingleBook(firebaseKey); // await stops the code in this function and waits for the response. This is like using .then
 //   const authorObject = await getSingleAuthor(bookObject.author_id); // this function uses the data response from the bookObject
@@ -40,7 +41,8 @@ const getAuthorBooks = (firebaseKey) => new Promise((resolve, reject) => {
   }).catch(reject);
 });
 
-// asynch await
+// asynch await for viewAuthor green button instead of above code
+
 // const getAuthorBooks = async (firebaseKey) => {
 //   const author = await getSingleAuthor(firebaseKey);
 //   const authorBooks = await getBooksByAuthor(author.firebaseKey);
@@ -50,20 +52,21 @@ const getAuthorBooks = (firebaseKey) => new Promise((resolve, reject) => {
 // const getAuthorDetails = (firebaseKey) => new Promise((resolve, reject) => {
 // });
 // get authors books get authors books it hsould be a an array of books, an array method .map we could still .notate on it object.authorsarray.map what you want the dom string to actually give to you
-// map through array aobject.booksaray.map then create html representation
+// map through array object.booksaray.map then create html representation
 
 // this is the delete author books relationship thingy
-// const deleteAuthorBooksRelationship = (firebaseKey) => new Promise((resolve, reject) => {
-//   getAuthorBooks(firebaseKey).then((authorBooksArray) => {
-//     const deleteBookPromises = authorBooksArray.map((book) => deleteBook(book.firebaseKey));
+const deleteAuthorBooksRelationship = (firebaseKey) => new Promise((resolve, reject) => {
+  getAuthorBooks(firebaseKey).then((authorBooksArray) => {
+    const deleteBookPromises = authorBooksArray.map((book) => deleteBook(book.firebaseKey));
 
-//     Promise.all(deleteBookPromises).then(() => {
-//       deleteSingleAuthor(firebaseKey).then(resolve);
-//     });
-//   }).catch(reject);
-// });
+    Promise.all(deleteBookPromises).then(() => {
+      deleteSingleAuthor(firebaseKey).then(resolve);
+    });
+  }).catch(reject);
+});
 
 export {
   getBookDetails,
-  getAuthorBooks
+  getAuthorBooks,
+  deleteAuthorBooksRelationship
 };
