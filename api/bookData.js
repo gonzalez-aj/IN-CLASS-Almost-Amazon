@@ -12,7 +12,13 @@ const getBooks = () => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch(reject);
 });
 
@@ -38,7 +44,8 @@ const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
     },
   })
     .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    .then((data) => resolve(data)) // will resolve a single object
+    // .then((data) => resolve(Object.values(data))) Any time we are getting a single item back from Firebase, it will return the object we need so we just need to resolve the data and not manipulate it.
     .catch(reject);
 });
 
@@ -70,6 +77,18 @@ const updateBook = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getBooksByAuthor = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/books.json?orderBy="author_id"&equalTo="${firebaseKey}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }, // you technically do not need the options object for GET requests, but using it here for consistency
+  })
+    .then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
+
 // TODO: FILTER BOOKS ON SALE
 const booksOnSale = () => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books.json?orderBy="sale"&equalTo=true`, {
@@ -91,5 +110,6 @@ export {
   booksOnSale,
   deleteBook,
   getSingleBook,
-  updateBook
+  updateBook,
+  getBooksByAuthor
 };
