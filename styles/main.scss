@@ -96,3 +96,7 @@ body {
     white-space: pre-wrap;
   }
 }
+
+i > span {
+  pointer-events: none;
+}
