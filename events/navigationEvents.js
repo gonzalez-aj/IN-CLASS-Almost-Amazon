@@ -12,13 +12,11 @@ const navigationEvents = (user) => {
 
   // TODO: BOOKS ON SALE
   document.querySelector('#sale-books').addEventListener('click', () => {
-    console.warn('CLICKED on BOOKS on sale');
     booksOnSale(user.uid).then(showBooks);
   });
 
   // TODO: ALL BOOKS
   document.querySelector('#all-books').addEventListener('click', () => {
-    console.warn('CLICKED ALL BOOKS');
     getBooks(user.uid).then(showBooks);
   });
 
@@ -27,12 +25,10 @@ const navigationEvents = (user) => {
   // 2. Convert the response to an array because that is what the showAuthors function is expecting
   // 3. If the array is empty because there are no authors, make sure to use the emptyAuthor function
   document.querySelector('#authors').addEventListener('click', () => {
-    console.warn('CLICKED AUTHORS');
     getAuthors(user.uid).then(showAuthors).catch(emptyAuthors);
   });
 
   document.querySelector('#fave-authors').addEventListener('click', () => {
-    console.warn('CLICKED on fave authors');
     faveAuthors(user.uid).then(showAuthors).catch(emptyAuthors);
   });
 
