@@ -25,7 +25,7 @@ const formEvents = (user) => {
         const patchPayload = { firebaseKey: name };
 
         updateBook(patchPayload).then(() => {
-          getBooks().then(showBooks);
+          getBooks(user.uid).then(showBooks);
         });
       });
     }
@@ -44,6 +44,7 @@ const formEvents = (user) => {
         author_id: document.querySelector('#author_id').value,
         sale: document.querySelector('#sale').checked,
         firebaseKey,
+        uid: user.uid
       };
 
       updateBook(payload).then(() => {
@@ -83,7 +84,8 @@ const formEvents = (user) => {
         last_name: document.querySelector('#last-name').value,
         email: document.querySelector('#email').value,
         favorite: document.querySelector('#favorite').checked,
-        firebaseKey
+        firebaseKey,
+        uid: user.uid
       };
 
       updateAuthor(payload).then(() => {

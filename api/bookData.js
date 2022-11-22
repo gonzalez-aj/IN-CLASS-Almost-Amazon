@@ -91,7 +91,7 @@ const getBooksByAuthor = (firebaseKey) => new Promise((resolve, reject) => {
 
 // TODO: FILTER BOOKS ON SALE
 const booksOnSale = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books.json?orderBy="sale"&equalTo="${uid}"`, {
+  fetch(`${endpoint}/books.json?orderBy="uid"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

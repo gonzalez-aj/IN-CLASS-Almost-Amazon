@@ -13,7 +13,7 @@ const ViewDirectorBasedOnUserAuthStatus = () => {
   // 1. When a user logs in, their auth state changes to logged in
   // 2. When a user logs out, their auth state changes to logged out
   // Inside of this function, we will determine what happens when a user logs in and what happens when they log out
-  firebase.auth().onAuthStateChanged((user) => { // user is an object
+  firebase.auth().onAuthStateChanged((user) => { // user is an object THE FIRST INSTANCE
     if (user) {
       // person is logged in do something...
       startApp(user);
