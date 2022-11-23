@@ -29,7 +29,7 @@ const showBooks = (array) => {
         </div>
       </div>`;
   });
-  renderToDOM('#store', domString);
+  renderToDOM('#store', domString); // if edit book buttn is undefined then its a problem in the dom representation for the books
 };
 
 export { showBooks, emptyBooks };

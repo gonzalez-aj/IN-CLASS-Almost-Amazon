@@ -31,13 +31,14 @@ const domEvents = (user) => {
       addBookForm(user.uid);
     }
 
-    // TODO: CLICK EVENT EDITING/UPDATING A BOOK
-    if (e.target.id.includes('edit-book-btn')) {
+    // TODO: CLICK EVENT EDITING A BOOK
+    if (e.target.id.includes('edit-book-btn')) { // lives in books.js item.firebaseKey
       // console.warn('EDIT BOOK', e.target.id);
       // console.warn(e.target.id.split('--'));
-      const [, firebaseKey] = e.target.id.split('--');
+      const [, firebaseKey] = e.target.id.split('--'); // if this is problem
 
-      getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj));
+      getSingleBook(firebaseKey).then((bookObj) => addBookForm(user.uid, bookObj)); // it is expecting as the first parameter, the userid, but im passing it the whole object
+      // get single book param in api bookData.js
       // getSingleBook(firebaseKey).then(addBookForm); // using the callback method ?
     }
     // TODO: CLICK EVENT FOR VIEW BOOK DETAILS green button
@@ -68,10 +69,9 @@ const domEvents = (user) => {
 
     // FIXME: ADD CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('add-author-btn')) {
-      console.warn('ADD AUTHOR');
       addAuthorForm();
     }
-    // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
+    // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR btn blue
     if (e.target.id.includes('edit-author-btn')) {
       // console.warn('EDIT AUTHOR', e.target.id);
       // console.warn(e.target.id.split('--'));
