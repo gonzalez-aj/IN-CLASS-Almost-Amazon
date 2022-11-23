@@ -6,8 +6,8 @@ import domEvents from '../events/domEvents';
 import formEvents from '../events/formEvents';
 import navigationEvents from '../events/navigationEvents';
 import { showBooks } from '../pages/books';
-import { getAuthors } from '../api/authorData';
-import { showAuthors } from '../pages/authors';
+// import { getAuthors } from '../api/authorData';
+// import { showAuthors } from '../pages/authors';
 
 const startApp = (user) => {
   domBuilder(user); // BUILD THE DOM we need the structure of the dom built first
@@ -19,7 +19,7 @@ const startApp = (user) => {
 
   // TODO: Put all books on the DOM on App load getBooks is a Promise! always .then it books is taco, it pulls the resolve
   getBooks(user.uid).then((books) => showBooks(books));
-  getAuthors(user.uid).then((authors) => showAuthors(authors));
+  // getAuthors(user.uid).then((authors) => showAuthors(authors));
 };
 
 export default startApp;

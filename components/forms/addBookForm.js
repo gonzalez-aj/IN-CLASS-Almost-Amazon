@@ -34,7 +34,7 @@ const addBookForm = (uid, obj = {}) => { // allows us to keep our code dry, reus
     </form>`;
 
   renderToDOM('#form-container', domString);
-  selectAuthor(uid, `${obj.author_id || ''}`); // fuction creating select dropdown menu
+  selectAuthor(uid, `${obj.author_id || ''}`); // function creating select dropdown menu
 };
 
 export default addBookForm;
