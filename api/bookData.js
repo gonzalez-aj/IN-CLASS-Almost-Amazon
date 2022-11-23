@@ -36,7 +36,7 @@ const deleteBook = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 // TODO: GET SINGLE BOOK
-const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
+const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => { // firebaseKey got undefined
   fetch(`${endpoint}/books/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
