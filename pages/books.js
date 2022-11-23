@@ -30,6 +30,6 @@ const showBooks = (array) => {
       </div>`;
   });
   renderToDOM('#store', domString); // if edit book buttn is undefined then its a problem in the dom representation for the books
-};
+}; // firebaseKey is an bject nested in an oabj
 
 export { showBooks, emptyBooks };
