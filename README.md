@@ -72,3 +72,6 @@ In preparation for next week, complete the following in lab:
 - Firebase Realtime Database
 - Bootstrap 5
 - Webpack 5
+
+## Contributors
+- [Angie Gonzalez](https://github.com/AngieMGonzalez)
