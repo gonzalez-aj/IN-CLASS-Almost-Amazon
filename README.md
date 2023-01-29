@@ -1,4 +1,7 @@
-# Almost Amazon
+# Almost Amazon Books[![Netlify Status](https://api.netlify.com/api/v1/badges/e4871dda-171e-4798-b505-ecc3d827e7c0/deploy-status)](https://app.netlify.com/sites/almost-amaze-books/deploys)
+
+[View The App Here](https://almost-amaze-books.netlify.app/)
+
 We are building an admin app that allows a store owner to login to the app and manage books and authors.
 
 [User Restricted Deployed Sample](https://almost-amazon-webpack5.netlify.app/#)
